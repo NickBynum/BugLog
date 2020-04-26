@@ -2,7 +2,7 @@ import express from 'express';
 import BaseController from '../utils/BaseController';
 import auth0provider from '@bcwdev/auth0provider';
 import { bugService } from '../services/BugsService';
-import { noteService } from '../services/NotesService'
+import { notesService } from '../services/NotesService'
 
 export class BugsController extends BaseController {
   constructor() {
@@ -31,7 +31,8 @@ export class BugsController extends BaseController {
   async createBug(req, res, next) {
     try {
       req.body.creatorEmail = req.userInfo.email
-      let data = bugService.createBug(req.body)
+      let data = await bugService.createBug(req.body)
+      return res.status(201).send(data)
     } catch (error) { next(error) }
   }
   async editBugById(req, res, next) {
@@ -48,7 +49,7 @@ export class BugsController extends BaseController {
   }
   async getNotesByBugId(req, res, next) {
     try {
-      let data = await noteService.getNoteByBugId(req.params.id)
+      let data = await notesService.getNoteByBugId(req.params.id)
       return res.send(data)
     } catch (error) { next(error) }
 

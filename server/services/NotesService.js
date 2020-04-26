@@ -1,7 +1,7 @@
 import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 
-class NoteService {
+class NotesService {
   async getNoteByBugId(id) {
     let data = await dbContext.Notes.find({ bugId: id })
     if (!data) {
@@ -29,4 +29,4 @@ class NoteService {
     return data;
   }
 }
-export const noteService = new NoteService()
+export const notesService = new NotesService()

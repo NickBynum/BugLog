@@ -13,7 +13,14 @@ class NoteService {
     let data = await dbContext.Notes.create(rawData)
     return data
   }
-
+  async editNote(bugId, userEmail, update) {
+    let data = await dbContext.Notes.findOneAndUpdate({ _id: bugId, creatorEmail: userEmail },
+      update, { new: true })
+    if (!data) {
+      throw new BadRequest("Invalid ID or you don't have permissions")
+    }
+    return data;
+  }
 
 }
 export const noteService = new NoteService()

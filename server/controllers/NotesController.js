@@ -9,6 +9,7 @@ export class NoteController extends BaseController {
     this.router
       .use(auth0provider.getAuthorizedUserInfo)
       .post('', this.createNote)
+      .put('/:id', this.editNote)
   }
   async createNote(req, res, next) {
     try {
@@ -18,5 +19,11 @@ export class NoteController extends BaseController {
     }
     catch (error) { next(error) }
   }
-  
+  async editNote(req, res, next) {
+    try {
+      let data = await noteService.editNote(req.params.id, req.userInfo.email, req.body)
+      return res.send(data)
+    }
+    catch (error) { next(error) }
+  }
 }

@@ -10,6 +10,7 @@ export class NoteController extends BaseController {
       .use(auth0provider.getAuthorizedUserInfo)
       .post('', this.createNote)
       .put('/:id', this.editNote)
+      .delete('/:id', this.deleteNote)
   }
   async createNote(req, res, next) {
     try {
@@ -25,5 +26,13 @@ export class NoteController extends BaseController {
       return res.send(data)
     }
     catch (error) { next(error) }
+  }
+  async deleteNote(req, res, next) {
+    try {
+      await noteService.deleteNote(req.params.id, req.userInfo.email)
+      return res.send("Successfully deleted!")
+    } catch (error) {
+      next(error)
+    }
   }
 }

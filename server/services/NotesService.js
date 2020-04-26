@@ -21,6 +21,12 @@ class NoteService {
     }
     return data;
   }
-
+  async deleteNote(bugId, userEmail) {
+    let data = await dbContext.Notes.findOneAndRemove({ _id: bugId, creatorEmail: userEmail })
+    if (!data) {
+      throw new BadRequest("Invalid ID or you don't have permissions")
+    }
+    return data;
+  }
 }
 export const noteService = new NoteService()

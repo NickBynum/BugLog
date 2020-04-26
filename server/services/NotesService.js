@@ -2,13 +2,17 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 
 class NoteService {
-async getNoteByBugId(id) {
-  let data = await dbContext.Notes.find({bugId: id })
-  if(!data) {
-    throw new BadRequest("This Bug doesn't seem to exist!")
+  async getNoteByBugId(id) {
+    let data = await dbContext.Notes.find({ bugId: id })
+    if (!data) {
+      throw new BadRequest("This Bug doesn't seem to exist!")
+    }
+    return data
   }
-  return data
-}
+  async createNote(rawData) {
+    let data = await dbContext.Notes.create(rawData)
+    return data
+  }
 
 
 }

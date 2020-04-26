@@ -4,11 +4,19 @@ import auth0provider from '@bcwdev/auth0provider';
 import { noteService } from '../services/NotesService';
 
 export class NoteController extends BaseController {
-  constructor(){
+  constructor() {
     super("api/notes")
     this.router
-    .use(auth0provider.getAuthorizedUserInfo)
-    .post('', this.createNote)
+      .use(auth0provider.getAuthorizedUserInfo)
+      .post('', this.createNote)
   }
-
+  async createNote(req, res, next) {
+    try {
+      req.body.creatorEmail = req.userInfo.email
+      let data = await noteService.createNote(req.body)
+      return res.send(data)
+    }
+    catch (error) { next(error) }
+  }
+  
 }

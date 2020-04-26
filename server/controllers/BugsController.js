@@ -18,7 +18,7 @@ export class BugsController extends BaseController {
   }
   async getBugById(req, res, next) {
     try {
-      let data = await bugService.getBugById(req.userInfo.email)
+      let data = await bugService.getBugById(req.params.id, req.userInfo.email)
       return res.send(data)
     } catch (error) { next(error) }
   }
@@ -37,7 +37,7 @@ export class BugsController extends BaseController {
   }
   async editBugById(req, res, next) {
     try {
-      let data = await bugService.editBugById(req.params.id, req.body)
+      let data = await bugService.editBugById(req.params.id, req.userInfo.email, req.body)
       return res.send(data)
     } catch (error) { next(error) }
   }

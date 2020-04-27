@@ -8,17 +8,17 @@ export class BugsController extends BaseController {
   constructor() {
     super("api/bugs")
     this.router
-    .get('/:id', this.getBugById)
     .get('', this.getAllBugs)
     .post('', this.createBug)
     .get('/:id/notes', this.getNotesByBugId)
     .use(auth0provider.getAuthorizedUserInfo)
+    .get('/:id', this.getById)
       .put('/:id', this.editBugById)
       .delete('/:id', this.deleteBugById)
   }
-  async getBugById(req, res, next) {
+  async getById(req, res, next) {
     try {
-      let data = await bugService.getBugById(req.params.id, req.userInfo.email)
+      let data = await bugService.getById(req.params.id, req.userInfo.email)
       return res.send(data)
     } catch (error) { next(error) }
   }

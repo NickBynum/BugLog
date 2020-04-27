@@ -2,11 +2,11 @@
   <div class="AddBug">
     <form action="submit" @submit="addBug()" class="form-group">
       <label for="title">Title:</label>
-      <input type="text" name="title" id="bugTitle" placeholder="Title..." />
+      <input type="text" name="title" id="bugTitle" placeholder="Title..." v-model="newBug.title"/>
       <label for="reportedBy">Reported By:</label>
       <h6 name="reportedBy">{{this.$store.state.profile.name}}</h6>
-      <label for="bugDetails">Details of Bug:</label>
-      <textarea name="bugDetails" id="formBugDetails" cols="30" rows="10"></textarea>
+      <label for="bugDetails"">Details of Bug:</label>
+      <textarea name="bugDetails" id="formBugDetails" cols="30" rows="10" v-model="newBug.description"></textarea>
       <button
         type="submit"
         data-dismiss="modal"
@@ -22,12 +22,18 @@
 export default {
   name: "AddBug",
   data() {
-    return {};
+    return {
+      newBug: {
+        title: "",
+        description: ""
+      }
+    };
   },
   computed: {},
   methods: {
     addBug() {
-      console.log("Add bug button triggered!");
+      this.$store.dispatch("addBug", this.newBug)
+      this.newBug = { title: "", description: ""}
     }
   },
   components: {}

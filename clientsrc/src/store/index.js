@@ -45,10 +45,18 @@ export default new Vuex.Store({
       }
     },
     //#region --Bugs --
+    async getBugs({commit, dispatch}) {
+      try {
+        let res = await api.get('bugs')
+        commit("setBugs", res.data)
+      } catch (error) {
+        console.error(error);
+      }
+    },
     async addBug({commit, dispatch}, bugData) {
       try {
         let res = await api.post('bugs', bugData)
-        dispatch("getBug")
+        dispatch("getBugs")
       } catch (error) {
         console.error(error);
       }

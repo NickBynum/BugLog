@@ -1,5 +1,5 @@
 <template>
-  <div class="bugs">
+  <div class="BugsComp">
     <table class="table table-striped table-secondary">
       <thead>
         <tr>
@@ -10,12 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <!-- <th scope="row">{{bugTitle}}</th>
-          <td>{{bugReportedBy}}</td>
-          <td>{{status}}</td>
-          <td>{{lastModified}}</td> -->
-        </tr>
+        <bug v-for="bug in bugs" :bugData="bug" :key="bug.id"></bug>
       </tbody>
     </table>
   </div>
@@ -23,15 +18,22 @@
 
 
 <script>
+import Bug from "../Pages/Bug";
 export default {
   name: "BugsComp",
-  // props: 'bugs',
+  props: ["bugData"],
   data() {
     return {};
   },
-  computed: {},
+  computed: {
+    bugs() {
+      return this.$store.state.bugs;
+    }
+  },
   methods: {},
-  components: {}
+  components: {
+    Bug
+  }
 };
 </script>
 

@@ -17,10 +17,17 @@
 import BugsComp from "../components/BugsComp";
 export default {
   name: "home",
+  mounted() {
+this.$store.dispatch("getBugs")
+  },
+  created() {
+this.$store.dispatch("getBugs")
+  },
   data() {
     return {};
   },
-  computed: {},
+  computed: {
+  },
   methods: {},
   components: {
     BugsComp

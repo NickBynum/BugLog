@@ -5,7 +5,7 @@
       <input type="text" name="title" id="bugTitle" placeholder="Title..." v-model="newBug.title"/>
       <label for="reportedBy">Reported By:</label>
       <h6 name="reportedBy">{{this.$store.state.profile.name}}</h6>
-      <label for="bugDetails"">Details of Bug:</label>
+      <label for="bugDetails">Details of Bug:</label>
       <textarea name="bugDetails" id="formBugDetails" cols="30" rows="10" v-model="newBug.description"></textarea>
       <button
         type="submit"

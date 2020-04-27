@@ -35,6 +35,7 @@
         <div class="row">
           <div class="col-12">
             <h5>Notes</h5>
+            <NotesComp></NotesComp>
           </div>
         </div>
       </div>
@@ -69,6 +70,7 @@
 
 
 <script>
+import NotesComp from "../components/NotesComp"
 export default {
   name: "bug-details",
   data() {
@@ -83,7 +85,9 @@ export default {
     }
   },
   methods: {},
-  components: {}
+  components: {
+    NotesComp
+  }
 };
 </script>
 

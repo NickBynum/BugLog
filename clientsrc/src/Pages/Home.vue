@@ -1,12 +1,29 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <h1>Bedr Bugs</h1>
+  <div class="home container-fluid">
+    <div class="row mt-5 ml-5">
+      <div class="col-12">
+        <h4 class="bedr-logo">Bugs to Bedr</h4>
+        <div class="row">
+          <div class="col-12">
+            <BugsComp></BugsComp>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import BugsComp from "../components/BugsComp";
 export default {
-  name: "home"
+  name: "home",
+  data() {
+    return {};
+  },
+  computed: {},
+  methods: {},
+  components: {
+    BugsComp
+  }
 };
 </script>

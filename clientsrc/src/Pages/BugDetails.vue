@@ -37,13 +37,8 @@
             <h5>Notes</h5>
           </div>
         </div>
-        <div class="row justify-content-center">
-          <div class="col-11 border">table</div>
-        </div>
-        <div class="row justify-content-end">
-          <button class="btn btn-success mt-1">Add Note</button>
-        </div>
       </div>
+        <notes></notes>
     </div>
     <!-- Begin display view when closed -->
     <div v-else>

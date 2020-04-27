@@ -34,7 +34,6 @@ export default {
     addNote() {
       this.newNote.bugId = this.$route.params.bugId
       this.newNote.creatorEmail = this.$store.state.profile.email
-      console.log(this.newNote.creatorEmail);
       this.$store.dispatch("addNote", this.newNote);
       this.newNote = {};
     }

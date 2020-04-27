@@ -39,7 +39,9 @@
           </div>
         </div>
       </div>
-        <notes></notes>
+      <Modal id="addNoteModal">
+        <addNote></addNote>
+      </Modal>
     </div>
     <!-- Begin display view when closed -->
     <div v-else>
@@ -70,7 +72,9 @@
 
 
 <script>
-import NotesComp from "../components/NotesComp"
+import NotesComp from "../components/NotesComp";
+import Modal from "../utils/Modal";
+import addNote from "../components/AddNoteComp";
 export default {
   name: "bug-details",
   data() {
@@ -86,7 +90,9 @@ export default {
   },
   methods: {},
   components: {
-    NotesComp
+    NotesComp,
+    Modal,
+    addNote
   }
 };
 </script>

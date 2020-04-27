@@ -1,5 +1,6 @@
 <template>
   <div class="AddBug">
+    <h2 class="mt-0 mb-4">Report Bug</h2>
     <form action="submit" @submit="addBug()" class="form-group">
       <label for="title">Title:</label>
       <input type="text" name="title" id="bugTitle" placeholder="Title..." v-model="newBug.title"/>

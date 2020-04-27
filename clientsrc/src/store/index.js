@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import Axios from "axios";
 import router from "../router";
+import { STATES } from "mongoose";
 
 Vue.use(Vuex);
 
@@ -31,6 +32,12 @@ export default new Vuex.Store({
     },
     setActiveBug(state, bug) {
       state.activeBug = bug
+    },
+    setNotes(state, notes) {
+      state.notes = notes
+    },
+    setActiveNotes(state, note) {
+      state.notes = note
     }
   },
   actions: {
@@ -72,6 +79,23 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error);
       }
-    }
+    },
+    //#region Notes
+    async addNote({commit, dispatch}, noteData) {
+      try {
+        let res = await api.post('notes', noteData)
+        dispatch("getNotes")
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getNote({commit, dispatch}, noteId) {
+      try {
+        let res = await api.get('notes/' + noteId)
+        commit("setActiveNote", res.data)
+      } catch (error) {
+        console.error(error);
+      }
+    },
   }
 });

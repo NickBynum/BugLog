@@ -2,23 +2,23 @@ import express from 'express';
 import BaseController from '../utils/BaseController';
 import auth0provider from '@bcwdev/auth0provider';
 import { bugService } from '../services/BugsService';
-import { notesService } from '../services/NotesService'
+import { notesService } from '../services/NotesService';
 
 export class BugsController extends BaseController {
   constructor() {
     super("api/bugs")
     this.router
+    .use(auth0provider.getAuthorizedUserInfo)
     .get('', this.getAllBugs)
     .post('', this.createBug)
     .get('/:id/notes', this.getNotesByBugId)
-    .use(auth0provider.getAuthorizedUserInfo)
     .get('/:id', this.getById)
-      .put('/:id', this.editBugById)
-      .delete('/:id', this.deleteBugById)
+    .put('/:id', this.editBugById)
+    .delete('/:id', this.deleteBugById)
   }
   async getById(req, res, next) {
     try {
-      let data = await bugService.getById(req.params.id, req.userInfo.email)
+      let data = await bugService.getById(req.params.id)
       return res.send(data)
     } catch (error) { next(error) }
   }

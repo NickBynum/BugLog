@@ -2,7 +2,6 @@ import Vue from "vue";
 import Vuex from "vuex";
 import Axios from "axios";
 import router from "../router";
-import { STATES } from "mongoose";
 
 Vue.use(Vuex);
 
@@ -12,7 +11,7 @@ let baseUrl = location.host.includes("localhost")
 
 let api = Axios.create({
   baseURL: baseUrl + "api",
-  timeout: 3000,
+  timeout: 5000,
   withCredentials: true
 });
 
@@ -22,6 +21,7 @@ export default new Vuex.Store({
     bugs: [],
     notes: [],
     activeBug: {},
+    activeNote: {},
   },
   mutations: {
     setProfile(state, profile) {
@@ -36,7 +36,7 @@ export default new Vuex.Store({
     setNotes(state, notes) {
       state.notes = notes
     },
-    setActiveNotes(state, note) {
+    setActiveNote(state, note) {
       state.notes = note
     }
   },
@@ -66,6 +66,8 @@ export default new Vuex.Store({
     },
     async addBug({commit, dispatch}, bugData) {
       try {
+        console.log(bugData);
+        
         let res = await api.post('bugs', bugData)
         dispatch("getBugs")
       } catch (error) {
@@ -84,14 +86,14 @@ export default new Vuex.Store({
     async addNote({commit, dispatch}, noteData) {
       try {
         let res = await api.post('notes', noteData)
-        dispatch("getNotes")
+        dispatch("getNotes", noteData.bugId)
       } catch (error) {
         console.error(error);
       }
     },
-    async getNote({commit, dispatch}, noteId) {
+    async getNotes({commit, dispatch}, bugId) {
       try {
-        let res = await api.get('notes/' + noteId)
+        let res = await api.get('bugs/' + bugId + '/notes')
         commit("setActiveNote", res.data)
       } catch (error) {
         console.error(error);

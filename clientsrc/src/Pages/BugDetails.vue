@@ -82,6 +82,7 @@ export default {
   },
   created() {
     this.$store.dispatch("getBug", this.$route.params.bugId);
+    this.$store.dispatch("getNotes", this.$route.params.bugId)
   },
   computed: {
     bugData() {

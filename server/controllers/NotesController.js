@@ -7,9 +7,9 @@ export class NotesController extends BaseController {
   constructor() {
     super("api/notes")
     this.router
-      .use(auth0provider.getAuthorizedUserInfo)
-      .post('', this.createNote)
-      .put('/:id', this.editNote)
+    .use(auth0provider.getAuthorizedUserInfo)
+    .post('', this.createNote)
+    .put('/:id', this.editNote)
       .delete('/:id', this.deleteNote)
   }
   async createNote(req, res, next) {

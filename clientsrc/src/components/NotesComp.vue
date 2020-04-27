@@ -9,7 +9,7 @@
         </tr>
       </thead>
       <tbody>
-        <bug v-for="note in notes" :noteData="bug" :key="note.id"></bug>
+        <note v-for="note in notes" :noteData="note" :key="note.id"></note>
       </tbody>
     </table>
     <div class="row">

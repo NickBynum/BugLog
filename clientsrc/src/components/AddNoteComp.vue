@@ -1,23 +1,16 @@
 <template>
   <div class="AddNote">
-    <form action="submit" @submit="addNote()" class="form-group">
+    <form action="submit" @submit.prevent="addNote()" class="form-group">
       <label for="title">Add Comment</label>
-      <input type="text" name="title" id="noteTitle" placeholder="Title..." v-model="newNote.title"/>
+      <input type="text" name="title" id="noteTitle" placeholder="Title..." v-model="newNote.title" />
       <label for="reportedBy">Reported By:</label>
-      <h6 name="reportedBy">{{this.$store.state.profile.name}}</h6>
-      <label for="noteDetails">Comment:</label>
-      <textarea name="noteDetails" id="formNoteDetails" cols="30" rows="10" v-model="newNote.description"></textarea>
       <button
         type="submit"
         data-dismiss="modal"
-        class="btn btn-sm btn-primary"
+        class="btn btn-success m-1"
         @click="addNote()"
       >Submit Note</button>
-            <button
-        type="button"
-        data-dismiss="modal"
-        class="btn btn-sm btn-danger"
-      >Cancel</button>
+      <button type="button" data-dismiss="modal" class="btn btn-danger m-1">Cancel</button>
     </form>
   </div>
 </template>
@@ -29,16 +22,21 @@ export default {
   data() {
     return {
       newNote: {
-        title: "",
-        description: ""
+        title: ""
       }
     };
   },
+  // async mounted() {
+  //   await this.$store.dispatch("getProfile");
+  // },
   computed: {},
   methods: {
     addNote() {
-      this.$store.dispatch("addNote", this.newNote)
-      this.newNote = { title: "", description: ""}
+      this.newNote.bugId = this.$route.params.bugId
+      this.newNote.creatorEmail = this.$store.state.profile.email
+      console.log(this.newNote.creatorEmail);
+      this.$store.dispatch("addNote", this.newNote);
+      this.newNote = {};
     }
   },
   components: {}

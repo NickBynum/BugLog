@@ -30,6 +30,9 @@ export default {
       }
     };
   },
+  // async mounted() {
+  //   await this.$store.dispatch("getProfile");
+  // },
   computed: {},
   methods: {
     addBug() {

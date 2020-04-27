@@ -19,20 +19,13 @@ export default {
   name: "Note",
   props: ["noteData"],
   async mounted() {
-    await this.$store.dispatch("getProfile");
+    // await this.$store.dispatch("getProfile");
+    this.$store.dispatch("getNotes", this.$route.params.bugId)
   },
-  computed: {
-    profile() {
-      return this.$store.state.user;
-    }
-  },
+  computed: {},
   methods: {
-    // getNoteDetails() {
+    // getNotes() {
     //   this.$store.commit("setActiveNote", {});
-    //   this.$router.push({
-    //     name: "NoteDetails",
-    //     params: { noteId: this.noteData.id }
-    //   });
     // }
   },
   components: {}

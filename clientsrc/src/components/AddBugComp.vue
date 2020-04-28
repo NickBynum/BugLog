@@ -1,7 +1,7 @@
 <template>
   <div class="AddBug">
     <h2 class="mt-0 mb-4">Report Bug</h2>
-    <form action="submit" @submit="addBug()" class="form-group">
+    <form class="form-group">
       <label for="title">Title:</label>
       <input type="text" name="title" id="bugTitle" placeholder="Title..." v-model="newBug.title"/>
       <label for="reportedBy">Reported By:</label>
@@ -35,9 +35,15 @@ export default {
   // },
   computed: {},
   methods: {
-    addBug() {
-      this.$store.dispatch("addBug", this.newBug)
+    async addBug() {
+      await this.$store.dispatch("addBug", this.newBug)
       this.newBug = { title: "", description: ""}
+      this.$router.push(
+        {
+          name: "BugDetails",
+          params: { bugId: this.$store.state.activeBug.id }
+        }
+      )
     }
   },
   components: {}

@@ -2,7 +2,7 @@
   <div class="BugsComp">
     <table class="table table-striped table-secondary">
       <thead>
-        <tr>
+        <tr class="bg-dark text-light">
           <th scope="col">Title</th>
           <th scope="col">Reported By</th>
           <th scope="col">Status</th>

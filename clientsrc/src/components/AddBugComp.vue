@@ -1,13 +1,13 @@
 <template>
   <div class="AddBug">
-    <h2 class="mt-0 mb-4">Report Bug</h2>
+    <h2 class="mt-0 mb-4">Report a Bug</h2>
     <form class="form-group">
-      <label for="title">Title:</label>
-      <input type="text" name="title" id="bugTitle" placeholder="Title..." v-model="newBug.title"/>
-      <label for="reportedBy">Reported By:</label>
+      <label class="group" for="title">Title: </label>
+      <input class="form-control" type="text" name="title" id="bugTitle" placeholder="Title..." v-model="newBug.title"/>
+      <label for="reportedBy">Reported By: </label>
       <h6 name="reportedBy">{{this.$store.state.profile.name}}</h6>
-      <label for="bugDetails">Details of Bug:</label>
-      <textarea name="bugDetails" id="formBugDetails" cols="30" rows="10" v-model="newBug.description"></textarea>
+      <label class="mt-2" for="bugDetails">Details of Bug: </label>
+      <textarea class="form-control mt-1" name="bugDetails" id="formBugDetails" cols="30" rows="10" v-model="newBug.description"></textarea>
       <button
         type="submit"
         data-dismiss="modal"

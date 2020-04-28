@@ -31,7 +31,12 @@
         </div>
         <div class="row justify-content-end">
           <button class="btn btn-warning m-1" @click="editing = true">Edit Bug</button>
-          <button class="btn btn-danger m-1" @click="closeBug()">Close Bug</button>
+          <button
+            class="btn btn-danger m-1"
+            data-toggle="modal"
+            data-target="#editBugModal"
+            @click="closeBug()"
+          >Close Bug</button>
         </div>
         <div class="row">
           <div class="col-12">
@@ -39,36 +44,41 @@
             <NotesComp></NotesComp>
           </div>
         </div>
-      <Modal id="addNoteModal">
-        <addNote></addNote>
-      </Modal>
+        <Modal id="addNoteModal">
+          <addNote></addNote>
+        </Modal>
       </div>
       <div v-else>
-        <form class="form-group">
-          <label for="title">Title:</label>
-          <input
-            type="text"
-            name="title"
-            id="bugTitle"
-            placeholder="Title..."
-            v-model="bugData.title"
-          />
-          <label for="reportedBy">Reported By:</label>
-          <h6 name="reportedBy">{{this.$store.state.profile.name}}</h6>
-          <label for="bugDetails">Details of Bug:</label>
-          <textarea
-            name="bugDetails"
-            id="formBugDetails"
-            cols="30"
-            rows="10"
-            v-model="bugData.description"
-          ></textarea>
-          <button
-            type="submit"
-            class="btn btn-sm btn-primary"
-            @click="editBug()"
-          >Submit Changes</button>
-        </form>
+        <!-- <Modal id="editBugModal"> -->
+
+              <form class="form-group">
+                <label for="title">Title:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="title"
+                  id="bugTitle"
+                  placeholder="Title..."
+                  v-model="bugData.title"
+                />
+                <label for="reportedBy">Reported By:</label>
+                <h6 name="reportedBy">{{this.$store.state.profile.name}}</h6>
+                <label for="bugDetails">Details of Bug:</label>
+                <textarea
+                  class="form-control"
+                  name="bugDetails"
+                  id="formBugDetails"
+                  cols="30"
+                  rows="10"
+                  v-model="bugData.description"
+                ></textarea>
+                <button
+                  type="submit"
+                  class="btn btn-sm btn-primary"
+                  @click="editBug()"
+                >Submit Changes</button>
+              </form>
+              <!-- </Modal> -->
       </div>
     </div>
     <!-- Begin display view when closed -->

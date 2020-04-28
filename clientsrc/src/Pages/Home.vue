@@ -4,7 +4,7 @@
       <div class="col-12">
         <h4 class="bedr-logo">Bugs to Bedr</h4>
         <span>
-          <input type="checkbox" @click="hideClosed()"/> Hide Closed
+          <input type="checkbox" @click="hideClosed()" /> Hide Closed
         </span>
         <div class="row">
           <div class="col-12">
@@ -20,7 +20,6 @@
 import BugsComp from "../components/BugsComp";
 export default {
   name: "home",
-  props: ['bugData'],
   mounted() {
     this.$store.dispatch("getBugs");
   },
@@ -30,12 +29,12 @@ export default {
   data() {
     return {};
   },
-  computed: {
+  computed: {},
+  methods: {
     hideClosed() {
-console.log("Betcha wish this worked!");
+      console.log("Betcha wish this worked!");
     }
   },
-  methods: {},
   components: {
     BugsComp
   }

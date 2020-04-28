@@ -28,8 +28,8 @@
       <span class="navbar-text">
         <!-- //TODO - Make OpenBug Method -->
         <button class="btn btn-dark" data-toggle="modal" data-target="#addBugModal">Report</button>
-        <button class="btn btn-success" @click="login" v-if="!$auth.isAuthenticated">Login</button>
-        <button class="btn btn-danger" @click="logout" v-else>logout</button>
+        <button class="btn btn-success m-1" @click="login" v-if="!$auth.isAuthenticated">Login</button>
+        <button class="btn btn-danger m-1" @click="logout" v-else>logout</button>
       </span>
       <Modal id="addBugModal">
         <AddBug></AddBug>

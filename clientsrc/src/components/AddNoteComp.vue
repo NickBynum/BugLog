@@ -3,7 +3,7 @@
     <form action="submit" @submit.prevent="addNote()" class="form-group">
       <label for="title">Add Comment</label>
       <input type="text" name="title" id="noteTitle" placeholder="Title..." v-model="newNote.title" />
-      <label for="reportedBy">Reported By:</label>
+      <label for="reportedBy">Reported By: {{this.$auth.user.name}}</label>
       <button
         type="submit"
         data-dismiss="modal"
@@ -33,7 +33,7 @@ export default {
   methods: {
     addNote() {
       this.newNote.bugId = this.$route.params.bugId
-      this.newNote.creatorEmail = this.$store.state.profile.email
+      this.newNote.creatorEmail = this.$auth.user.email
       this.$store.dispatch("addNote", this.newNote);
       this.newNote = {};
     }
